@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteUserAC } from 'redux/Users/actions';
+
+import { selectUsers } from 'redux/Users/selectors';
+import { deleteUser } from 'redux/Users/usersSlice';
 
 export const HomePage = () => {
-  const users = useSelector(state => state.users);
+  const users = useSelector(selectUsers);
   const dispatch = useDispatch();
 
   return (
@@ -14,7 +16,7 @@ export const HomePage = () => {
             <p>Age: {user.age}</p>
             <button
               onClick={() => {
-                dispatch(deleteUserAC(user.id));
+                dispatch(deleteUser(user.id));
               }}
             >
               Delete

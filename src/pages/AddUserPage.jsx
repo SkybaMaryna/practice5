@@ -1,18 +1,22 @@
 import { useDispatch } from 'react-redux';
-import { addUserAC } from 'redux/Users/actions';
+import { useNavigate } from 'react-router-dom';
+
+import { addUser } from 'redux/Users/usersSlice';
 
 export const AddUserPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(
-      addUserAC({
+      addUser({
         name: e.target.elements.name.value,
-        id: Date.now,
+        id: Date.now(),
         age: e.target.elements.age.value,
       })
     );
+    navigate('/');
   };
 
   return (
